@@ -5,7 +5,7 @@
 
 int main() {
     t_adj t=readGraph("C:/Users/chaig/CLionProjects/Groupe3_EtudeGrapheDeMarkov/data/exemple1.txt");
-    printf("jdqjgvytza");
+    PrintAdj(t);
     verify_markov_graph(t);
 
     return 0;
