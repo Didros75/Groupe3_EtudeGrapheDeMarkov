@@ -25,6 +25,6 @@ void PrintList(t_list list);
 t_adj CreateEmptyAdj(int taille);
 void PrintAdj(t_adj adj);
 
-t_adj readGraph(const char *filename);;
+t_adj readGraph(const char *filename);
 
 #endif //LIST_ADJ_H
