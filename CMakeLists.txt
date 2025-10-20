@@ -1,6 +1,8 @@
-cmake_minimum_required(VERSION 3.30)
-project(TI_301_PRJ_STUDENTS_master)
+cmake_minimum_required(VERSION 3.24)
+project(2526_TI301_PJT C)
 
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_C_STANDARD 11)
 
-add_executable(TI_301_PRJ_STUDENTS_master main.cpp)
+add_executable(TI_301_PJT
+        main.c utils.c)
+
