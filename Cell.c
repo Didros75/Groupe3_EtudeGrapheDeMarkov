@@ -4,10 +4,14 @@
 #include <stdlib.h>
 #include "Cell.h"
 
-t_cell *createCell(int summit_arrival , float proba){
-    t_cell *new = (t_cell *)malloc(sizeof(t_cell));
-    new->summit_arrival = summit_arrival;
-    new->proba = proba;
-    new->next = NULL;
-    return new;
+t_cell *createCell(int summit_arrival, float proba) {
+    t_cell *c = (t_cell *)malloc(sizeof(t_cell));
+    if (c == NULL) {
+        perror("malloc failed in createCell");
+        exit(EXIT_FAILURE);
+    }
+    c->summit_arrival = summit_arrival;
+    c->proba = proba;
+    c->next = NULL;   // IMPORTANT
+    return c;
 }
