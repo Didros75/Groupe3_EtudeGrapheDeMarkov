@@ -13,13 +13,23 @@ t_list CreateEmptyList(){
 }
 
 void AddCellToList(t_list *list, t_cell *new_cell) {
-  if (!new_cell) return;
+  if (!list || !new_cell)
+    return;
+
   new_cell->next = NULL;
 
-  t_cell **ptr = &list->head;
-  while (*ptr) ptr = &((*ptr)->next);
-  *ptr = new_cell;
+  if (!list->head) {
+    list->head = new_cell;
+    return;
+  }
+
+  t_cell *current = list->head;
+  while (current->next)
+    current = current->next;
+
+  current->next = new_cell;
 }
+
 
 void PrintList(t_list list){
   printf("[head @]");
@@ -41,7 +51,7 @@ t_adj CreateEmptyAdj(int taille) {
   }
 
   adj.lenght = taille;
-  // allouer un tableau de t_list de taille "taille"
+
   adj.leaving_edge = (t_list *)malloc(taille * sizeof(t_list));
   if (adj.leaving_edge == NULL) {
     perror("malloc failed in CreateEmptyAdj");
@@ -49,8 +59,8 @@ t_adj CreateEmptyAdj(int taille) {
   }
 
   // initialiser chaque liste (head = NULL)
-  for (int i = 0; i < taille; ++i) {
-    adj.leaving_edge[i].head = NULL;
+  for (int i = 0; i <= taille; ++i) {
+    adj.leaving_edge[i] = CreateEmptyList();
   }
 
   return adj;
@@ -94,7 +104,7 @@ t_adj readGraph(const char *filename) {
     //Ajouter l’arête qui va de ‘depart’ à ‘arrivée’ avec la probabilité ‘proba’ dans la liste d’adjacence
     printf("ccc");
     t_cell *cell = createCell(arrivee, proba);
-    printf("ddd");
+    printf("%d %f", cell->summit_arrival, cell->proba);
     AddCellToList(&(adj.leaving_edge[depart]), cell);
     printf("eee");
   }
