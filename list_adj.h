@@ -22,7 +22,9 @@ typedef struct s_adj {
 t_list CreateEmptyList();
 void AddCellToList(t_list *list, t_cell *cell);
 void PrintList(t_list list);
-t_adj *CreateEmptyAdj(int taille);
+t_adj CreateEmptyAdj(int taille);
 void PrintAdj(t_adj adj);
+
+t_adj readGraph(const char *filename);;
 
 #endif //LIST_ADJ_H
