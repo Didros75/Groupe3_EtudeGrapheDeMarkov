@@ -27,4 +27,8 @@ void PrintAdj(t_adj adj);
 
 t_adj readGraph(const char *filename);
 
+//Définition de la fonction qui vérifie si le graphe est un graphe de Markov
+
+void verify_markov_graph(t_adj adj);
+
 #endif //LIST_ADJ_H

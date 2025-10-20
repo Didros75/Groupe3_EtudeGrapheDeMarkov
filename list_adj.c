@@ -101,3 +101,20 @@ t_adj readGraph(const char *filename) {
   fclose(file);
   return adj;
 }
+
+void verify_markov_graph(t_adj adj){
+  for (int i = 0; i < adj.lenght; i++){
+    t_cell *cell = adj.leaving_edge[i].head;
+    float cpt = 0;
+    while (cell != NULL){
+      cpt += cell->proba;
+      cell = cell->next;
+    }
+    if (cpt<0.99 || cpt>1.00){
+      printf("Le graphe n’est pas un graphe de Markov");
+      printf("La somme des probabilités du sommet %d est %f", cell->summit_arrival, cpt);
+      return;
+    }
+  }
+  printf("Le graphe est un graphe de Markov");
+}
