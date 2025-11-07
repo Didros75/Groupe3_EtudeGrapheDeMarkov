@@ -6,7 +6,7 @@
 #define FLOWCHART "flowchart LR"
 #define DEFAULT_FILE_NAME "default.txt"
 #define A_INIT_SIZE 7
-#define LINK_SIZE 50
+#define LINK_SIZE 15
 #define ASCII_START 65
 #define TEMP_LIST 2255
 #define CHAR_PROBA_SIZE 4

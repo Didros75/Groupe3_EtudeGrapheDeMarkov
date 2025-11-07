@@ -53,8 +53,8 @@ void parcours_adj(t_adj adj,char *file_name) {
     while (cell != NULL) {
       char *arrival = getID(cell->summit_arrival);
       float proba =  cell->proba;
-      char final_string[50];
-      char rival[50];
+      char final_string[LINK_SIZE];
+      char rival[sizeof(arrival)];
       strcpy(rival,arrival);
       snprintf(final_string, sizeof(final_string), "%s-->|%.2f|%s",getID(i+1), proba,rival);
       printf("%s\n", final_string);
@@ -71,6 +71,5 @@ void export_adj(t_adj adj,char *file_name) {
   add_text_spacer(file_name);
   add_text_on_file(file_name, FLOWCHART);
   parcours_adj(adj,file_name);
-
 }
 
