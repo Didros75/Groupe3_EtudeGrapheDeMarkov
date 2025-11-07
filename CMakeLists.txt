@@ -9,7 +9,9 @@ set(CMAKE_C_STANDARD_REQUIRED ON)
 set(SOURCES
         main.c
         Cell.c
-        List_Adj.c
+        list_adj.c
+        utils.c
+        export.c
 )
 
 # Créer l'exécutable
@@ -18,9 +20,3 @@ add_executable(Groupe3_EtudeGrapheDeMarkov ${SOURCES})
 # Inclure les headers
 target_include_directories(Groupe3_EtudeGrapheDeMarkov PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
-# (Optionnel) Afficher plus de warnings pour t’aider à déboguer
-if (MSVC)
-    target_compile_options(Groupe3_EtudeGrapheDeMarkov PRIVATE /W4)
-else()
-    target_compile_options(Groupe3_EtudeGrapheDeMarkov PRIVATE -Wall -Wextra -pedantic)
-endif()

@@ -91,4 +91,3 @@ void export_adj(t_adj adj,char *file_name) {
 
 }
 
-void main(){}

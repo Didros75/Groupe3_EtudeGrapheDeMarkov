@@ -2,11 +2,11 @@
 #include <stdlib.h>
 #include "Cell.h"
 #include "List_Adj.h"
+#include "export.h"
 
 int main() {
     t_adj t=readGraph("C:/Users/chaig/CLionProjects/Groupe3_EtudeGrapheDeMarkov/data/exemple2.txt");
-    PrintAdj(t);
-    verify_markov_graph(t);
+    export_adj(t, "test.txt");
 
     return 0;
 }
