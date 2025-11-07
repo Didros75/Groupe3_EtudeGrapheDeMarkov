@@ -1,0 +1,149 @@
+# Fichiers objets
+*.o
+*.ko
+*.obj
+*.elf
+
+# Bibliothèques précompilées
+*.lib
+*.a
+*.la
+*.lo
+
+# Bibliothèques dynamiques partagées
+*.dll
+*.so
+*.so.*
+*.dylib
+
+# Exécutables
+*.exe
+*.out
+*.app
+*.i*86
+*.x86_64
+*.hex
+
+# Fichiers de débogage
+*.dSYM/
+*.su
+*.idb
+*.pdb
+
+# Fichiers générés par le noyau
+*.mod*
+*.cmd
+.tmp_versions/
+modules.order
+Module.symvers
+Mkfile.old
+dkms.conf
+
+# Fichiers de précompilation
+*.gch
+*.pch
+
+# Fichiers de dépendances
+*.d
+
+# CMake
+CMakeLists.txt.user
+CMakeCache.txt
+CMakeFiles/
+CMakeScripts/
+Testing/
+Makefile
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
+_deps/
+build/
+Build/
+out/
+
+# Autotools
+/ar-lib
+/mdate-sh
+/py-compile
+/test-driver
+/ylwrap
+.deps/
+.dirstamp
+Makefile.in
+/autom4te.cache
+/aclocal.m4
+/compile
+/configure
+/depcomp
+/install-sh
+/missing
+/stamp-h1
+/config.guess
+/config.h.in
+/config.log
+/config.status
+/config.sub
+/ltmain.sh
+*.m4
+
+# JetBrains IDEs (CLion, IntelliJ)
+.idea/
+cmake-build-*/
+.idea_modules/
+*.iml
+*.ipr
+*.iws
+out/
+
+# Visual Studio / Visual Studio Code
+.vscode/
+.vs/
+*.sln
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Xcode
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+xcuserdata/
+*.xccheckout
+*.moved-aside
+DerivedData/
+*.hmap
+*.ipa
+*.xcuserstate
+
+# Fichiers de backup et temporaires
+*~
+*.swp
+*.swo
+*.bak
+*.tmp
+*.log
+*.stackdump
+
+# Valgrind
+*.memcheck
+vgcore.*
+
+# Core dumps
+core
+core.*
+
+# Dossiers de distribution
+dist/
+bin/
+obj/
+
+# Documentation générée
+doc/html/
+doc/latex/
+*.dox
