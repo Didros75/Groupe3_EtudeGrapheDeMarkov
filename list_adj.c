@@ -58,7 +58,6 @@ t_adj CreateEmptyAdj(int taille) {
     exit(EXIT_FAILURE);
   }
 
-  // initialiser chaque liste (head = NULL)
   for (int i = 0; i <= taille; ++i) {
     adj.leaving_edge[i] = CreateEmptyList();
   }
@@ -68,19 +67,19 @@ t_adj CreateEmptyAdj(int taille) {
 
 
 void PrintAdj(t_adj adj){
+  printf("\n");
   for (int i = 0; i < adj.lenght; i++){
-    printf("Liste pour le sommet %d :", i);
-    PrintList(adj.leaving_edge[i]);
+    printf("Liste pour le sommet %d :", i+1);
+    PrintList(adj.leaving_edge[i+1]);
     printf("\n");
   }
 }
 
 t_adj readGraph(const char *filename) {
-  FILE *file = fopen(filename, "rt"); // read-only, text
+  FILE *file = fopen(filename, "rt");
   int nbvert, depart, arrivee;
   float proba;
 
-  //declarer la variable pour la liste d’adjacence
   t_adj adj;
 
   if (file==NULL) {
@@ -88,33 +87,26 @@ t_adj readGraph(const char *filename) {
     exit(EXIT_FAILURE);
   }
 
-  // first line contains number of vertices
   if (fscanf(file, "%d", &nbvert) != 1) {
     perror("Could not read number of vertices");
     exit(EXIT_FAILURE);
   }
 
-  // Initialiser une liste d’adjacence vide à partir du nombre de sommets
   adj = CreateEmptyAdj(nbvert);
 
   while (fscanf(file, "%d %d %f", &depart, &arrivee, &proba) == 3) {
-    // on obtient, pour chaque ligne du fichier les valeurs
-    // depart, arrivee, et proba
-
-    //Ajouter l’arête qui va de ‘depart’ à ‘arrivée’ avec la probabilité ‘proba’ dans la liste d’adjacence
-    printf("ccc");
     t_cell *cell = createCell(arrivee, proba);
     printf("%d %f", cell->summit_arrival, cell->proba);
     AddCellToList(&(adj.leaving_edge[depart]), cell);
-    printf("eee");
   }
   fclose(file);
   return adj;
 }
 
 void verify_markov_graph(t_adj adj) {
-  for (int i = 0; i < adj.lenght; i++) {  // Corrigé "lenght" → "length"
-    t_cell *cell = adj.leaving_edge[i].head;
+
+  for (int i = 0; i < adj.lenght; i++) {
+    t_cell *cell = adj.leaving_edge[i+1].head;
     float cpt = 0.0f;
 
     while (cell != NULL) {
@@ -122,7 +114,7 @@ void verify_markov_graph(t_adj adj) {
       cell = cell->next;
     }
 
-    if (cpt < 0.99f || cpt > 1.01f) {  // Tolérance légère
+    if (cpt != 1.00f) {
       printf("Le graphe n'est pas un graphe de Markov.\n");
       printf("Somme des probabilités du sommet %d : %.3f\n", i, cpt);
       return;
