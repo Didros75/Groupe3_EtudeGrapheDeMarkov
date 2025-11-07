@@ -31,62 +31,45 @@ void add_text_on_file(const char *filename, const char *text) {
   fclose(file);
 }
 
-//gestion structure Lines
-
-str_adj * createLines() {
-  str_adj* lines = (str_adj *) (sizeof(str_adj));
-  lines->size = 0;
-  lines->Lines=(char **) malloc(TEMP_LIST);
+void add_text_spacer(const char *filename) {
+  add_text_on_file(filename, "");
 }
 
-char * setLines(char* add_text) {
-  char * text = (char*) malloc(strlen(add_text) + 1);
-  strcpy(text, add_text);
-  return text;
-}
-
-void freeLines(str_adj *lines) {
-  if (lines == NULL) return;
-  for (int i = lines->size - 1; i >= 0; i--) {
-    free(lines->Lines[i]);
-  }
-
-  free(lines->Lines);
-
-  free(lines);
-}
 
 void parcours_adj(t_adj adj,char *file_name) {
-  str_adj * f_lines = createLines();
-  for (int i=0; i<adj.lenght; i++) {
+  int t_len = adj.lenght;
+  for (int i=0; i<t_len; i++) {
     // écriture ligne d'initialisation résultat demandé pour le sommet 1 : A((1))
-    char * ascii_letter = getID(i+1);
     int ascii_number = i+1;
     char ascii_init[A_INIT_SIZE];
-    sprintf(ascii_init, "%s((%d))", ascii_letter, ascii_number);
+    sprintf(ascii_init, "%s((%d))", getID(ascii_number), ascii_number);
+    printf("%s\n", ascii_init);
     add_text_on_file(file_name, ascii_init);
-    //-------
-    t_list summit = adj.leaving_edge[i];
+  }
+  add_text_spacer(file_name);
+  for (int i=0; i<t_len; i++) {
+    t_list summit = adj.leaving_edge[i+1];
     t_cell * cell = summit.head;
     while (cell != NULL) {
-      int arrival = cell->summit_arrival;
+      char *arrival = getID(cell->summit_arrival);
       float proba =  cell->proba;
-      char ascii_link[LINK_SIZE];
-      sprintf(ascii_link, "%s-->|%d|%s", ascii_letter, ascii_number,getID(arrival));
-      f_lines->Lines[f_lines->size] = setLines(ascii_link);
-      f_lines->size++;
+      char final_string[50];
+      char rival[50];
+      strcpy(rival,arrival);
+      snprintf(final_string, sizeof(final_string), "%s-->|%.2f|%s",getID(i+1), proba,rival);
+      printf("%s\n", final_string);
+      add_text_on_file(file_name, final_string);
       cell = cell->next;
     }
   }
-  for (int i=0; i<f_lines->size; i++) {
-    add_text_on_file(file_name, f_lines->Lines[i]);
-  }
-  freeLines(f_lines);
+
 }
 
 void export_adj(t_adj adj,char *file_name) {
   create_file(file_name);
   add_text_on_file(file_name, DEFAULT_MERMAID_HEADER);
+  add_text_spacer(file_name);
+  add_text_on_file(file_name, FLOWCHART);
   parcours_adj(adj,file_name);
 
 }
