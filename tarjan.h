@@ -26,9 +26,9 @@ typedef struct s_stock_class {
 }t_stock_class;
 
 typedef struct s_stack{
-  t_tarjan_vertex *data;  // Tableau dynamique de sommets Tarjan
-  int top;                // Indice du sommet courant de la pile
-  int size;               // Taille maximale
+  t_tarjan_vertex *data;
+  int top;
+  int size;
 }t_stack;
 
 t_tarjan_vertex* graph_to_tab(t_adj);
