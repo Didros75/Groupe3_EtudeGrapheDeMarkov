@@ -32,5 +32,10 @@ typedef struct s_stack{
 }t_stack;
 
 t_tarjan_vertex* graph_to_tab(t_adj);
+t_stack* create_stack(int);
+int is_empty(t_stack*);
+void push(t_stack*, t_tarjan_vertex);
+t_tarjan_vertex pop(t_stack*);
+t_tarjan_vertex peek(t_stack*);
 
 #endif //TARJAN_H

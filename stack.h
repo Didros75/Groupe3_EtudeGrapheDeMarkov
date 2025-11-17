@@ -7,9 +7,9 @@
 
 
 typedef struct s_stack_int{
-    int *data;      // Tableau d'entiers (indices de sommets)
-    int top;        // Indice du sommet courant de la pile
-    int size;       // Taille maximale
+    int *data;
+    int top;
+    int size;
 } t_stack_int;
 
 #endif //STACK_H
