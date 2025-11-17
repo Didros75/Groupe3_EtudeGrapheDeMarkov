@@ -96,7 +96,7 @@ t_adj readGraph(const char *filename) {
 
   while (fscanf(file, "%d %d %f", &depart, &arrivee, &proba) == 3) {
     t_cell *cell = createCell(arrivee, proba);
-    printf("%d %f", cell->summit_arrival, cell->proba);
+    //printf("%d %f", cell->summit_arrival, cell->proba);
     AddCellToList(&(adj.leaving_edge[depart]), cell);
   }
   fclose(file);

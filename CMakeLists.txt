@@ -12,6 +12,8 @@ set(SOURCES
         list_adj.c
         utils.c
         export.c
+        stack.c
+        tarjan.c
 )
 
 # Créer l'exécutable

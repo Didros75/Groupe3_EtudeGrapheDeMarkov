@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-t_stack_int* create_stack(int size) {
+t_stack_int* create_stack_int(int size) {
     t_stack_int *stack = malloc(sizeof(t_stack_int));
     stack->data = malloc(size * sizeof(int));
     stack->top = -1;
@@ -14,20 +14,20 @@ t_stack_int* create_stack(int size) {
     return stack;
 }
 
-int is_empty(t_stack_int *stack) {
+int is_empty_int(t_stack_int *stack) {
     return stack->top == -1;
 }
 
-void push(t_stack_int *stack, int value) {
+void push_int(t_stack_int *stack, int value) {
     if (stack->top < stack->size - 1) {
         stack->data[++stack->top] = value;
     }
 }
 
-int pop(t_stack_int *stack) {
+int pop_int(t_stack_int *stack) {
     return stack->data[stack->top--];
 }
 
-int peek(t_stack_int *stack) {
+int peek_int(t_stack_int *stack) {
     return stack->data[stack->top];
 }

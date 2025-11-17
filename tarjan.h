@@ -37,5 +37,10 @@ int is_empty(t_stack*);
 void push(t_stack*, t_tarjan_vertex);
 t_tarjan_vertex pop(t_stack*);
 t_tarjan_vertex peek(t_stack*);
+static int min_int(int, int);
+static void tarjan_parcours(int, t_adj*, t_tarjan_vertex*, t_stack_int*, int*, t_stock_class*);
+t_stock_class tarjan(t_adj);
+void print_t_stock_class(t_stock_class partition);
+
 
 #endif //TARJAN_H

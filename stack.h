@@ -12,4 +12,10 @@ typedef struct s_stack_int{
     int size;
 } t_stack_int;
 
+t_stack_int* create_stack_int(int size);
+int is_empty_int(t_stack_int *stack);
+void push_int(t_stack_int *stack, int value);
+int pop_int(t_stack_int *stack);
+int peek_int(t_stack_int *stack);
+
 #endif //STACK_H
