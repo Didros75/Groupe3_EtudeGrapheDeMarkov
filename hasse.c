@@ -1,8 +1,16 @@
 #include <malloc.h>
 #include "hasse.h"
+#import "tarjan.h"
 
-int array_class[T_MAX];
-
+void tarjanToArray(int *array_class, t_stock_class vertex){
+  for (int i = 0; i < vertex.nb_t_class; i++){
+    t_class actualClass = vertex.tab_t_class[i];
+    for (int j = 0; j < actualClass.nb_summit; j++){
+      t_tarjan_vertex actualVertex = actualClass.tab_summit[j];
+      array_class[actualVertex.id] = (int)actualClass.name[1];
+    }
+  }
+}
 
 void removeTransitiveLinks(t_link_array *p_link_array)
 {

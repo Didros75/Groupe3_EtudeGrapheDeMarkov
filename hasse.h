@@ -2,6 +2,7 @@
 #define __HASSE_H__
 
 #include "list_adj.h"
+#include "tarjan.h"
 #define T_MAX 100
 
 typedef struct s_link {
@@ -14,6 +15,7 @@ typedef struct s_link_array {
     int log_size;
 } t_link_array;
 
+void tarjanToArray(int *array_class, t_stock_class vertex);
 void removeTransitiveLinks(t_link_array *p_link_array);
 void hasse(int *array_class, t_adj adj, t_link_array *link_array);
 
