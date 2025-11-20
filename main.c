@@ -18,7 +18,7 @@ int main() {
 
     tarjanToArray(&array_class, partition);
     for (int i = 0; i < 10; i++) {
-        printf("%d\n", array_class[i]);
+        printf("%s\n", array_class[i]);
     }
     return 0;
 }
