@@ -15,7 +15,7 @@ typedef struct s_link_array {
 } t_link_array;
 
 void removeTransitiveLinks(t_link_array *p_link_array);
-void hasse(int * array_class, t_adj adj, t_link_array *link_array);
+void hasse(int *array_class, t_adj adj, t_link_array *link_array);
 
 /**
  * @brief Creates a link array from the given partition and graph.

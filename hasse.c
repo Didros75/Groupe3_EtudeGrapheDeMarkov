@@ -1,7 +1,8 @@
 #include <malloc.h>
 #include "hasse.h"
 
-int * array_class[T_MAX];
+int array_class[T_MAX];
+
 
 void removeTransitiveLinks(t_link_array *p_link_array)
 {
@@ -49,6 +50,6 @@ void removeTransitiveLinks(t_link_array *p_link_array)
     }
 }
 
-void hasse(int * array_class, t_adj adj, t_link_array *link_array){
-
+void hasse(int *array_class, t_adj adj, t_link_array *link_array){
+  NULL;
 }
