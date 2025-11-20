@@ -52,7 +52,7 @@ t_adj CreateEmptyAdj(int taille) {
 
   adj.lenght = taille;
 
-  adj.leaving_edge = (t_list *)malloc(taille * sizeof(t_list));
+  adj.leaving_edge = malloc((taille + 1) * sizeof(t_list));
   if (adj.leaving_edge == NULL) {
     perror("malloc failed in CreateEmptyAdj");
     exit(EXIT_FAILURE);
@@ -68,12 +68,13 @@ t_adj CreateEmptyAdj(int taille) {
 
 void PrintAdj(t_adj adj){
   printf("\n");
-  for (int i = 0; i < adj.lenght; i++){
-    printf("Liste pour le sommet %d :", i+1);
-    PrintList(adj.leaving_edge[i+1]);
+  for (int i = 1; i <= adj.lenght; i++){
+    printf("Liste pour le sommet %d :", i);
+    PrintList(adj.leaving_edge[i]);
     printf("\n");
   }
 }
+
 
 t_adj readGraph(const char *filename) {
   FILE *file = fopen(filename, "rt");
@@ -105,8 +106,8 @@ t_adj readGraph(const char *filename) {
 
 void verify_markov_graph(t_adj adj) {
 
-  for (int i = 0; i < adj.lenght; i++) {
-    t_cell *cell = adj.leaving_edge[i+1].head;
+  for (int i = 1; i <= adj.lenght; i++) {
+    t_cell *cell = adj.leaving_edge[i].head;
     float cpt = 0.0f;
 
     while (cell != NULL) {
@@ -114,7 +115,7 @@ void verify_markov_graph(t_adj adj) {
       cell = cell->next;
     }
 
-    if (cpt != 1.00f) {
+    if (cpt != 1.0f) {
       printf("Le graphe n'est pas un graphe de Markov.\n");
       printf("Somme des probabilités du sommet %d : %.3f\n", i, cpt);
       return;
