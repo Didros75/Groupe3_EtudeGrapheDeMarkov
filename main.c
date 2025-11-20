@@ -16,8 +16,12 @@ int main() {
     t_stock_class partition = tarjan(t);
     tarjanToArray(array_class, partition);
 
-    printf("Classes par sommet :\n");
-    for (int i = 1; i < t.lenght+1; i++)
-        printf("sommet %d -> classe %s\n", i, array_class[i]);
+    t_link_array link_array;
+    hasse(array_class, t, &link_array);
+    printf("Liens du Hasse :\n");
+    for (int i = 0; i < link_array.log_size; i++) {
+        printf("%d", link_array.log_size);
+        printf("%s -> %s\n", link_array.links[i].from, link_array.links[i].to);
+    }
     return 0;
 }
