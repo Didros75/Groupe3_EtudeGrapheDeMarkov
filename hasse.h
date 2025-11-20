@@ -15,7 +15,7 @@ typedef struct s_link_array {
     int log_size;
 } t_link_array;
 
-void tarjanToArray(char *array_class, t_stock_class vertex);
+void tarjanToArray(char **array_class, t_stock_class vertex);
 void removeTransitiveLinks(t_link_array *p_link_array);
 void hasse(char *array_class, t_adj adj, t_link_array *link_array);
 

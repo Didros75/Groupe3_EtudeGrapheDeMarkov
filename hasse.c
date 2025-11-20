@@ -1,15 +1,16 @@
 #include <malloc.h>
 #include "hasse.h"
-#import "tarjan.h"
+#include <stdio.h>
 
-void tarjanToArray(char *array_class, t_stock_class vertex){
-  for (int i = 0; i < vertex.nb_t_class; i++){
-    t_class actualClass = vertex.tab_t_class[i];
-    for (int j = 0; j < actualClass.nb_summit; j++){
-      t_tarjan_vertex actualVertex = actualClass.tab_summit[j];
-      array_class[actualVertex.id] = actualClass.name[1];
+
+void tarjanToArray(char **array_class, t_stock_class vertex){
+    for (int i = 0; i < vertex.nb_t_class; i++){
+        t_class actualClass = vertex.tab_t_class[i];
+        for (int j = 0; j < actualClass.nb_summit; j++){
+            t_tarjan_vertex actualVertex = actualClass.tab_summit[j];
+            array_class[actualVertex.id] = actualClass.name;
+        }
     }
-  }
 }
 
 int linkExists(const t_link_array *array, char from, char to)
@@ -22,21 +23,25 @@ int linkExists(const t_link_array *array, char from, char to)
 }
 
 void hasse(char *array_class, t_adj adj, t_link_array *link_array){
-  for (int i = 0; i < adj.lenght; i++){
-    char Ci = array_class[i];
-    t_cell *current = adj.leaving_edge[i].head;
-    while (current != NULL){
-      char Cj = array_class[current->summit_arrival];
-      if (Ci != Cj) {
-        if (linkExists(link_array, Ci, Cj)){
-          	link_array->log_size++;
-         	link_array->links[link_array->log_size].from = Ci;
-    		link_array->links[link_array->log_size].to = Cj;
+    link_array->log_size = 0;
+
+    for (int i = 0; i < adj.lenght; i++){
+        char Ci = array_class[i];
+        t_cell *current = adj.leaving_edge[i].head;
+
+        while (current != NULL){
+            char Cj = array_class[current->summit_arrival];
+
+            if (Ci != Cj){
+                if (!linkExists(link_array, Ci, Cj)){
+                    link_array->links[link_array->log_size].from = Ci;
+                    link_array->links[link_array->log_size].to = Cj;
+                    link_array->log_size++;
+                }
+            }
+            current = current->next;
         }
-      }
-      current = current->next;
     }
-  }
 }
 
 void removeTransitiveLinks(t_link_array *p_link_array)
