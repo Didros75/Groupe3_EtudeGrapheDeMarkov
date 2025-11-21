@@ -10,7 +10,7 @@ void tarjanToArray(char **array_class, t_stock_class vertex){
         t_class actualClass = vertex.tab_t_class[i];
         for (int j = 0; j < actualClass.nb_summit; j++){
             t_tarjan_vertex actualVertex = actualClass.tab_summit[j];
-            array_class[actualVertex.id] = actualClass.name;
+            array_class[actualVertex.id - 1] = actualClass.name;
         }
     }
 }
@@ -27,7 +27,7 @@ bool link_exists(t_link_array *link_array, char *from, char *to) {
 
 void hasse(char **array_class, t_adj adj, t_link_array *link_array) {
     link_array->log_size = 0;
-    for (int i = 1; i < adj.lenght+1; i++) {
+    for (int i = 0; i < adj.lenght; i++) {
         char *Ci = array_class[i];
         t_cell *current = adj.leaving_edge[i].head;
 
