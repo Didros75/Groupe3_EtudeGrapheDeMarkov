@@ -158,6 +158,27 @@ t_stock_class tarjan(t_adj adj)
     return partition;
 }
 
+void sorting(t_class c)
+{
+    int i, j, min_i;
+    t_tarjan_vertex tmp;
+
+    for (i = 0; i < c.nb_summit - 1; i++)
+    {
+        min_i = i;
+        for (j = i + 1; j < c.nb_summit; j++)
+        {
+            if (c.tab_summit[j].id < c.tab_summit[min_i].id)
+                min_i = j;
+        }
+
+        tmp = c.tab_summit[i];
+        c.tab_summit[i] = c.tab_summit[min_i];
+        c.tab_summit[min_i] = tmp;
+    }
+    return;
+}
+
 void print_t_stock_class(t_stock_class partition)
 {
     printf("Nombre de classes fortement connexes : %d\n", partition.nb_t_class);
@@ -167,7 +188,7 @@ void print_t_stock_class(t_stock_class partition)
         printf("Classe %s", c.name);
 
         printf(" (taille %d) : ", c.nb_summit);
-
+        sorting(c);
         for (int j = 0; j < c.nb_summit; j++) {
             printf("%d ", c.tab_summit[j].id);
         }
