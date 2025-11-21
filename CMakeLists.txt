@@ -14,6 +14,7 @@ set(SOURCES
         export.c
         stack.c
         tarjan.c
+        hasse.c
 )
 
 # Créer l'exécutable
