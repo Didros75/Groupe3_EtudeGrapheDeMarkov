@@ -54,6 +54,7 @@ void hasse(char **array_class, t_adj adj, t_link_array *link_array) {
         }//printf("Next !\n");
 
     }//printf("Final Point --------------\n");
+    removeTransitiveLinks(link_array);
 }
 
 
