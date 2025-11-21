@@ -1,6 +1,8 @@
 #include <malloc.h>
 #include "hasse.h"
 #include <stdio.h>
+#include <string.h>
+#include <stdbool.h>
 
 
 void tarjanToArray(char **array_class, t_stock_class vertex){
@@ -13,27 +15,26 @@ void tarjanToArray(char **array_class, t_stock_class vertex){
     }
 }
 
-int linkExists(const t_link_array *array, char from, char to)
-{
-    for (int i = 0; i < array->log_size; i++) {
-        if (array->links[i].from == from && array->links[i].to == to)
-            return 1;
+bool link_exists(t_link_array *link_array, char *from, char *to) {
+    for (int i = 0; i < link_array->log_size; i++) {
+        if (strcmp(link_array->links[i].from, from) == 0 &&
+            strcmp(link_array->links[i].to, to) == 0) {
+            return true;
+            }
     }
-    return 0;
+    return false;
 }
 
-void hasse(char *array_class, t_adj adj, t_link_array *link_array){
+void hasse(char **array_class, t_adj adj, t_link_array *link_array) {
     link_array->log_size = 0;
-
-    for (int i = 0; i < adj.lenght; i++){
-        char Ci = array_class[i];
+    for (int i = 1; i < adj.lenght+1; i++) {
+        char *Ci = array_class[i];
         t_cell *current = adj.leaving_edge[i].head;
 
-        while (current != NULL){
-            char Cj = array_class[current->summit_arrival];
-
-            if (Ci != Cj){
-                if (!linkExists(link_array, Ci, Cj)){
+        while (current != NULL) {
+            char *Cj = array_class[current->summit_arrival];
+            if (strcmp(Ci, Cj) != 0) {
+                if (!link_exists(link_array, Ci, Cj)) {
                     link_array->links[link_array->log_size].from = Ci;
                     link_array->links[link_array->log_size].to = Cj;
                     link_array->log_size++;
