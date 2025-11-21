@@ -75,3 +75,22 @@ float diffMatrix(float **M, float **N, int n){
   }
   return sum;
 }
+
+float **subMatrix(float **matrix, t_stock_class part, int compo_index){
+  t_class compo = part.tab_t_class[compo_index];
+  int n = compo.nb_summit;
+  float **sub = malloc(n * sizeof(float *));
+  for (int i = 0; i < n; i++) {
+    sub[i] = malloc(n * sizeof(float));
+  }
+  for (int i = 0; i < n; i++) {
+    int row = compo.tab_summit[i].id-1;
+
+    for (int j = 0; j < n; j++) {
+      int col = compo.tab_summit[j].id-1;
+      printf("%d %d, ", row, col);
+      sub[i][j] = matrix[row][col];
+    }
+  }
+  return sub;
+}
