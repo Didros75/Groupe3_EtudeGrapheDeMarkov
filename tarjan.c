@@ -164,10 +164,7 @@ void print_t_stock_class(t_stock_class partition)
 
     for (int i = 0; i < partition.nb_t_class; i++) {
         t_class c = partition.tab_t_class[i];
-        printf("Classe %d", i);
-
-        if (c.name != NULL)
-            printf(" (nom = %s)", c.name);
+        printf("Classe %s", c.name);
 
         printf(" (taille %d) : ", c.nb_summit);
 
