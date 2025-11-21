@@ -6,8 +6,8 @@
 #define T_MAX 100
 
 typedef struct s_link {
-  int from;
-  int to;
+  char *from;
+  char *to;
 } t_link;
 
 typedef struct s_link_array {
