@@ -121,23 +121,23 @@ static void tarjan_parcours(int v, t_adj *adj, t_tarjan_vertex *tab, t_stack_int
     }
 }
 
-void sorting(t_class c)
+void sorting(t_class *c)
 {
     int i, j, min_i;
     t_tarjan_vertex tmp;
 
-    for (i = 0; i < c.nb_summit - 1; i++)
+    for (i = 0; i < c->nb_summit; i++)
     {
         min_i = i;
-        for (j = i + 1; j < c.nb_summit; j++)
+        for (j = i + 1; j < c->nb_summit; j++)
         {
-            if (c.tab_summit[j].id < c.tab_summit[min_i].id)
+            if (c->tab_summit[j].id < c->tab_summit[min_i].id)
                 min_i = j;
         }
 
-        tmp = c.tab_summit[i];
-        c.tab_summit[i] = c.tab_summit[min_i];
-        c.tab_summit[min_i] = tmp;
+        tmp = c->tab_summit[i];
+        c->tab_summit[i] = c->tab_summit[min_i];
+        c->tab_summit[min_i] = tmp;
     }
     return;
 }
@@ -175,7 +175,7 @@ t_stock_class tarjan(t_adj adj)
     free(pile->data);
     free(pile);
     free(tab);
-    for (int v = 1; v <= partition.nb_t_class; v++) {sorting(partition.tab_t_class[v]);}
+    for (int v = 0; v < partition.nb_t_class; v++) {sorting(&partition.tab_t_class[v]);}
 
     return partition;
 }

@@ -13,6 +13,9 @@ void printMatrix(float ** matrix, int n);
 float **copyMatrix(float **matrix, int n);
 float **multiplyMatrix(float **A, float **B, int n);
 float diffMatrix(float **M, float **N, int n);
+float **powerMatrix(float **matrix, int n, int p);
+float **stableMatrix(float **A, int n, float epsilon);
+void allStableMatrix(t_adj t, t_stock_class part);
 
 float **subMatrix(float **matrix, t_stock_class part, int compo_index);
 

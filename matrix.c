@@ -30,6 +30,23 @@ float **createMatrix(t_adj t){
   return matrix;
 }
 
+float **powerMatrix(float **A, int n, int p){
+  if (p == 1)
+    return copyMatrix(A, n);
+  float **result = copyMatrix(A, n);
+  for (int k = 1; k < p; k++) {
+    float **tmp = multiplyMatrix(result, A, n);
+    for(int i = 0; i < n; i++)
+      free(result[i]);
+    free(result);
+
+    result = tmp;
+  }
+
+  return result;
+}
+
+
 void printMatrix(float **matrix, int n){
   for (int i = 0; i < n; i++){
     for (int j = 0; j < n; j++){
@@ -64,6 +81,8 @@ float **multiplyMatrix(float **A, float **B, int n){
   return C;
 }
 
+
+
 float diffMatrix(float **M, float **N, int n){
   float sum = 0;
   for(int i = 0; i < n; i++){
@@ -88,9 +107,67 @@ float **subMatrix(float **matrix, t_stock_class part, int compo_index){
 
     for (int j = 0; j < n; j++) {
       int col = compo.tab_summit[j].id-1;
-      printf("%d %d, ", row, col);
+      //printf("%d %d, ", row, col);
       sub[i][j] = matrix[row][col];
     }
   }
   return sub;
+}
+
+void freeMatrix(float **matrix, int rows) {
+  if (matrix == NULL) return;
+  for (int i = 0; i < rows; i++) {
+    free(matrix[i]);
+  }
+  free(matrix);
+}
+
+float **stableMatrix(float **A, int n, float epsilon) {
+  int p = 1;
+  float **M_prev = powerMatrix(A, n, p);
+  float **M_curr = NULL;
+
+  while (1) {
+    p++;
+    M_curr = powerMatrix(A, n, p);
+    float diff = diffMatrix(M_curr, M_prev, n);
+
+    freeMatrix(M_prev, n);
+
+    if (diff < epsilon) {
+      return M_curr;
+    }
+
+      if (p>100) {
+        printf("Impossible de trouver la distribution stationnaire, approximation :\n");
+        return M_curr;
+
+    }
+
+    M_prev = M_curr;
+  }
+}
+
+
+void allStableMatrix(t_adj t, t_stock_class part) {
+  printf("Matrice initiale :\n");
+  float **M = createMatrix(t);
+  printMatrix(M, t.lenght);
+  printf("\n");
+
+  for (int i = 0; i < part.nb_t_class; i++) {
+    int n = part.tab_t_class[i].nb_summit;
+
+    float **S = subMatrix(M, part, i);
+    float **C = stableMatrix(S, n, 0.01);
+
+    printf("Matrice de la distribution stationnaire de la classe C%d\n", i + 1);
+    printMatrix(C, n);
+    printf("\n");
+
+    freeMatrix(S, n);
+    freeMatrix(C, n);
+  }
+
+  freeMatrix(M, t.lenght);
 }
