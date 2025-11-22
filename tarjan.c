@@ -139,7 +139,6 @@ void sorting(t_class *c)
         c->tab_summit[i] = c->tab_summit[min_i];
         c->tab_summit[min_i] = tmp;
     }
-    return;
 }
 
 

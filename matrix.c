@@ -63,9 +63,7 @@ void printDistribution(float **matrix, int n){
     printf("%.2f ", matrix[0][i]);
   }
   printf("]\n");
-
 }
-
 
 float **copyMatrix(float **matrix, int n){
   float **copy = malloc(n * sizeof(float *));
@@ -91,8 +89,6 @@ float **multiplyMatrix(float **A, float **B, int n){
   }
   return C;
 }
-
-
 
 float diffMatrix(float **M, float **N, int n){
   float sum = 0;
