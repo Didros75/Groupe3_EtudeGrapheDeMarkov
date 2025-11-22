@@ -16,7 +16,9 @@ float diffMatrix(float **M, float **N, int n);
 float **powerMatrix(float **matrix, int n, int p);
 float **stableMatrix(float **A, int n, float epsilon);
 void allStableMatrix(t_adj t, t_stock_class part);
-
+void periodicity(t_adj graph);
+int getPeriod(float **sub_matrix,int n);
+int gcd(int *vals, int nbvals);
 float **subMatrix(float **matrix, t_stock_class part, int compo_index);
 
 #endif //MATRIX_H
