@@ -9,7 +9,7 @@
 #include "utils.h"
 
 int main() {
-    t_adj t=readGraph("C:/Users/chaig/CLionProjects/Groupe3_EtudeGrapheDeMarkov/data/exemple_valid_step3.txt");
+    t_adj t=readGraph("C:/Users/chaig/CLionProjects/Groupe3_EtudeGrapheDeMarkov/data/exemple3.txt");
     //t_adj t=readGraph("C:/Users/boban/CLionProjects/Groupe3_EtudeGrapheDeMarkov_prj/data/exemple3.txt");
     //t_adj t=readGraph("C:/Users/morin/CLionProjects/Groupe3_EtudeGrapheDeMarkov/data/exemple2.txt");
 

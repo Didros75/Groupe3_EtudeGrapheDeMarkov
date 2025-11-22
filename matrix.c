@@ -253,9 +253,9 @@ void periodicity(t_adj graph) {
     t_stock_class partition = tarjan(graph);
 
     for (int i = 0; i < partition.nb_t_class; i++) {
-        t_class cls = partition.tab_t_class[i];
+      t_class cls = partition.tab_t_class[i];
 
-        printf("\nAnalyse de la Class %s (Vertices: ", partition.tab_t_class->name);
+      printf("\nAnalyse de la Class %s (Colonnes : ", partition.tab_t_class[i].name);
         for (int v = 0; v < cls.nb_summit; v++) {
             printf("%d ", cls.tab_summit[v].id);
         }
@@ -267,7 +267,7 @@ void periodicity(t_adj graph) {
 
         float **M = createMatrix(graph);
         float **S = subMatrix(M, partition, i);
-        printf("Ditribution stationnaire de %s :\n", partition.tab_t_class->name);
+        printf("Ditribution stationnaire de %s :\n", partition.tab_t_class[i].name);
         float **C = stableMatrix(S, partition.tab_t_class[i].nb_summit, 0.01);
 
         printDistribution(C, partition.tab_t_class[i].nb_summit);
