@@ -64,3 +64,23 @@ void export_adj(t_adj adj,char *file_name) {
   add_text_on_file(file_name, FLOWCHART);
   parcours_adj(adj,file_name);
 }
+
+void parcours_hasse(t_link_array hasse, const char *file_name) {
+  for (int i = 0; i < hasse.log_size; i++) {
+    char final_string[LINK_SIZE];
+    snprintf(final_string, sizeof(final_string), "%s --> %s",
+             hasse.links[i].from,
+             hasse.links[i].to);
+    printf("%s\n", final_string);
+    add_text_on_file(file_name, final_string);
+  }
+}
+
+void export_hasse(t_link_array hasse, const char *file_name) {
+  create_file(file_name);
+  add_text_on_file(file_name, DEFAULT_MERMAID_HEADER);
+  add_text_spacer(file_name);
+  add_text_on_file(file_name, FLOWCHART);
+  parcours_hasse(hasse, file_name);
+  add_text_on_file(file_name, "```");
+}

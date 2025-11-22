@@ -1,6 +1,7 @@
 #ifndef EXPORT_H
 #define EXPORT_H
 #include "list_adj.h"
+#include "hasse.h"
 
 #define DEFAULT_MERMAID_HEADER "---\nconfig:\n\tlayout: elk\n\ttheme: neo\n\tlook: neo\n---"
 #define FLOWCHART "flowchart LR"
@@ -69,5 +70,29 @@ void parcours_adj(t_adj adj,char *file_name);
  *  - Aucun.
  */
 void export_adj(t_adj adj,char *file_name);
+
+
+/* Parcourt un diagramme de Hasse et écrit son contenu dans un fichier.
+ *
+ * Paramètres :
+ *  - hasse     : tableau contenant les liens du diagramme de Hasse.
+ *  - file_name : nom du fichier de sortie.
+ *
+ * Retour :
+ *  - Aucun.
+ */
+void parcours_hasse(t_link_array hasse, const char *file_name);
+
+
+/* Exporte un diagramme de Hasse dans un fichier utilisable par mermaid.
+ *
+ * Paramètres :
+ *  - hasse     : tableau contenant les liens du diagramme de Hasse.
+ *  - file_name : nom du fichier de sortie.
+ *
+ * Retour :
+ *  - Aucun.
+ */
+void export_hasse(t_link_array hasse, const char *file_name);
 
 #endif //EXPORT_H
