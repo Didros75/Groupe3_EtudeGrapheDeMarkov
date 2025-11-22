@@ -1,15 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "export.h"
-
 #include <string.h>
-
 #include "utils.h"
-
 #include "list_adj.h"
 
-
-// Fonction gestion fichier
 int create_file(const char *filename) {
   FILE *file = fopen(filename, "w");
   if (file == NULL) {
@@ -35,11 +30,9 @@ void add_text_spacer(const char *filename) {
   add_text_on_file(filename, "");
 }
 
-
 void parcours_adj(t_adj adj,char *file_name) {
   int t_len = adj.lenght;
   for (int i=0; i<t_len; i++) {
-    // écriture ligne d'initialisation résultat demandé pour le sommet 1 : A((1))
     int ascii_number = i+1;
     char ascii_init[A_INIT_SIZE];
     sprintf(ascii_init, "%s((%d))", getID(ascii_number), ascii_number);
@@ -62,7 +55,6 @@ void parcours_adj(t_adj adj,char *file_name) {
       cell = cell->next;
     }
   }
-
 }
 
 void export_adj(t_adj adj,char *file_name) {
@@ -72,4 +64,3 @@ void export_adj(t_adj adj,char *file_name) {
   add_text_on_file(file_name, FLOWCHART);
   parcours_adj(adj,file_name);
 }
-

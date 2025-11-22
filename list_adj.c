@@ -30,7 +30,6 @@ void AddCellToList(t_list *list, t_cell *new_cell) {
   current->next = new_cell;
 }
 
-
 void PrintList(t_list list){
   printf("[head @]");
 
@@ -64,7 +63,6 @@ t_adj CreateEmptyAdj(int taille) {
 
   return adj;
 }
-
 
 void PrintAdj(t_adj adj){
   printf("\n");

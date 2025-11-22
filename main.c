@@ -9,11 +9,13 @@
 #include "utils.h"
 
 int main() {
-    t_adj t=readGraph("C:/Users/chaig/CLionProjects/Groupe3_EtudeGrapheDeMarkov/data/exemple3.txt");
+    //t_adj t=readGraph("C:/Users/chaig/CLionProjects/Groupe3_EtudeGrapheDeMarkov/data/exemple3.txt");
     //t_adj t=readGraph("C:/Users/boban/CLionProjects/Groupe3_EtudeGrapheDeMarkov_prj/data/exemple3.txt");
     //t_adj t=readGraph("C:/Users/morin/CLionProjects/Groupe3_EtudeGrapheDeMarkov/data/exemple2.txt");
+    t_adj t=readGraph("C:/Users/julie/CLionProjects/Groupe3_EtudeGrapheDeMarkov/data/exemple_meteo.txt");
 
-    //export_adj(t, "test.txt");
+
+    export_adj(t, "test.txt");
     /*
     char *array_class[t.lenght];
     t_stock_class partition = tarjan(t);
