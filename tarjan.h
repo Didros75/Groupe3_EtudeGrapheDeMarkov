@@ -43,7 +43,7 @@ typedef struct s_stock_class {
 }t_stock_class;
 
 
-/* Structure représentant une pile contenant des t_tarjan_vertex.
+/* Structure représentant une liste contenant des t_tarjan_vertex.
  * data : tableau contenant les éléments empilés.
  * top  : index du sommet de la pile (-1 si vide).
  * size : capacité maximale de la pile.
@@ -64,11 +64,6 @@ typedef struct s_stack{
  *  - Une nouvelle pile.
  */
 t_tarjan_vertex* graph_to_tab(t_adj);
-t_stack* create_stack(int);
-int is_empty(t_stack*);
-void push(t_stack*, t_tarjan_vertex);
-t_tarjan_vertex pop(t_stack*);
-t_tarjan_vertex peek(t_stack*);
 
 
 /* Retourne le minimum entre deux entiers.
@@ -118,5 +113,15 @@ t_stock_class tarjan(t_adj);
  *  - Aucun.
  */
 void print_t_stock_class(t_stock_class partition);
+
+/* Trie les sommets d’une classe dans l'ordre croissant.
+ *
+ * Paramètres :
+ *  - c : pointeur vers la classe à trier.
+ *
+ * Retour :
+ *  - Aucun.
+ */
+void sorting(t_class *c);
 
 #endif //TARJAN_H
