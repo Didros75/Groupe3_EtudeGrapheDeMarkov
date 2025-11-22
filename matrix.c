@@ -57,6 +57,16 @@ void printMatrix(float **matrix, int n){
   }
 }
 
+void printDistribution(float **matrix, int n){
+  printf("[");
+  for (int i = 0; i < n; i++) {
+    printf("%.2f ", matrix[0][i]);
+  }
+  printf("]\n");
+
+}
+
+
 float **copyMatrix(float **matrix, int n){
   float **copy = malloc(n * sizeof(float *));
   for(int i = 0; i < n; i++){
@@ -253,11 +263,20 @@ void periodicity(t_adj graph) {
         float **subM = subMatrix(FullMatrix, partition, i);
 
         int period = getPeriod(subM, cls.nb_summit);
-        printf("   Period: %d\n", period);
+        printf("Period: %d\n", period);
 
+        float **M = createMatrix(graph);
+        float **S = subMatrix(M, partition, i);
+        printf("Ditribution stationnaire de %s :\n", partition.tab_t_class->name);
+        float **C = stableMatrix(S, partition.tab_t_class[i].nb_summit, 0.01);
+
+        printDistribution(C, partition.tab_t_class[i].nb_summit);
+
+        freeMatrix(M, partition.tab_t_class[i].nb_summit);
+        freeMatrix(S, partition.tab_t_class[i].nb_summit);
+        freeMatrix(C, partition.tab_t_class[i].nb_summit);
         freeMatrix(subM, cls.nb_summit);
     }
 
-    allStableMatrix(graph, partition);
     freeMatrix(FullMatrix, n);
 }
