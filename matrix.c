@@ -5,6 +5,7 @@
 #include "matrix.h"
 #include <stdlib.h>
 #include <stdio.h>
+
 void matrix0(float **matrix, int n){
   for (int i = 0; i < n; i++){
     for (int j = 0; j < n; j++){
@@ -55,6 +56,16 @@ void printMatrix(float **matrix, int n){
     printf("\n");
   }
 }
+
+void printDistribution(float **matrix, int n){
+  printf("[");
+  for (int i = 0; i < n; i++) {
+    printf("%.2f ", matrix[0][i]);
+  }
+  printf("]\n");
+
+}
+
 
 float **copyMatrix(float **matrix, int n){
   float **copy = malloc(n * sizeof(float *));
@@ -170,4 +181,102 @@ void allStableMatrix(t_adj t, t_stock_class part) {
   }
 
   freeMatrix(M, t.lenght);
+}
+
+int gcd(int *vals, int nbvals) {
+    if (nbvals == 0) return 0;
+    int result = vals[0];
+    for (int i = 1; i < nbvals; i++) {
+        int a = result;
+        int b = vals[i];
+        while (b != 0) {
+            int temp = b;
+            b = a % b;
+            a = temp;
+        }
+        result = a;
+    }
+    return result;
+}
+
+/**
+ * @brief calcule les puissances successives de la matrice d'adjacence et, pour chaque puissance k, vérifie si un élément diagonal est non nul, ce qui indique l'existence d'un cycle de longueur k. Elle collecte toutes ces longueurs puis retourne leur PGCD, qui correspond à la période de la classe.
+ * @param A sous-matrice de la classe
+ * @param n taille de la sous-matrice
+ * @return La période (1 si apériodique, >1 si périodique), 0 si erreur.
+ */
+int getPeriod(float **A, int n) {
+    if (n == 0 || A == NULL) return 0;
+
+    // classe à un seul sommet
+    if (n == 1) {
+        return (A[0][0] > 0.0f) ? 1 : 0;
+    }
+
+    int *cycle_lengths = malloc((2 * n) * sizeof(int));
+    int count = 0;
+
+    float **P = copyMatrix(A, n);  // P = A^1
+
+    // On vérifie les puissances de 1 à 2*n (suffisant pour trouver tous les cycles)
+    for (int k = 1; k <= 2 * n; k++) {
+        // Vérifie si un élément diagonal est > 0
+        for (int i = 0; i < n; i++) {
+            if (P[i][i] > 0.0f) {
+                cycle_lengths[count++] = k;
+                break;  // Un seul élément diagonal suffit pour cette puissance
+            }
+        }
+
+        // Calcule la puissance suivante : P = P * A
+        float **Next = multiplyMatrix(P, A, n);
+        freeMatrix(P, n);
+        P = Next;
+    }
+
+    freeMatrix(P, n);
+
+    int period;
+    if (count == 0) {
+        period = 0;
+    } else {
+        period = gcd(cycle_lengths, count);
+    }
+
+    free(cycle_lengths);
+    return period;
+}
+
+void periodicity(t_adj graph) {
+    int n = graph.lenght;
+    float **FullMatrix = createMatrix(graph);
+    t_stock_class partition = tarjan(graph);
+
+    for (int i = 0; i < partition.nb_t_class; i++) {
+      t_class cls = partition.tab_t_class[i];
+
+      printf("\nAnalyse de la Class %s (Colonnes : ", partition.tab_t_class[i].name);
+        for (int v = 0; v < cls.nb_summit; v++) {
+            printf("%d ", cls.tab_summit[v].id);
+        }
+        printf("):\n");
+        float **subM = subMatrix(FullMatrix, partition, i);
+
+        int period = getPeriod(subM, cls.nb_summit);
+        printf("Period: %d\n", period);
+
+        float **M = createMatrix(graph);
+        float **S = subMatrix(M, partition, i);
+        printf("Ditribution stationnaire de %s :\n", partition.tab_t_class[i].name);
+        float **C = stableMatrix(S, partition.tab_t_class[i].nb_summit, 0.01);
+
+        printDistribution(C, partition.tab_t_class[i].nb_summit);
+
+        freeMatrix(M, partition.tab_t_class[i].nb_summit);
+        freeMatrix(S, partition.tab_t_class[i].nb_summit);
+        freeMatrix(C, partition.tab_t_class[i].nb_summit);
+        freeMatrix(subM, cls.nb_summit);
+    }
+
+    freeMatrix(FullMatrix, n);
 }

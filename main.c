@@ -42,9 +42,9 @@ int main() {
     printf("\n");
     printMatrix(C, part.tab_t_class[0].nb_summit);
     */
-    t_stock_class part = tarjan(t);
-    print_t_stock_class(part);
-    allStableMatrix(t, part);
-
+    //t_stock_class part = tarjan(t);
+    //export_adj(t, "test.txt");
+    //print_t_stock_class(part);
+    periodicity(t);
     return 0;
 }
