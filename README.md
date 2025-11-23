@@ -10,3 +10,5 @@
 4. Lancez le projet
 
 Sans cette étape, les fichiers ne seront pas trouvés sur l'ordinateur
+
+Si cela ne fonctionne toujours pas, lorsqu'on vous demande de choisir l'utilisateur, selectionnez autre et entrez le chemin d'acces absolue vers le projet
