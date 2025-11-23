@@ -487,15 +487,14 @@ void exo7() {
   }
 }
 void exo8() {
-  char * path=userChoice("exemple_meteo.txt");
+  char * path=userChoice("exemple_valid_step3.txt");
   t_adj t = readGraph(path);
   printwd("Affichage des matrices :\n");
   free(path);
 
   t_stock_class part = tarjan(t);
   print_t_stock_class(part);
-  float **M = createMatrix(t);
-  printDistribution(M, part.tab_t_class[0].nb_summit);
+  allStableMatrix(t, part);
   printwd("Les informations ont ete affiche !\n");
 
   char *choices[2]={"1->Retour","2->Quitter le programme"};
@@ -513,7 +512,7 @@ void exo8() {
 
 
 void exo9() {
-  char * path=userChoice("exemple_meteo.txt");
+  char * path=userChoice("exemple_valid_step3.txt");
   t_adj t = readGraph(path);
   printwd("Affichage des matrices :\n");
   free(path);
@@ -536,8 +535,8 @@ void exo9() {
 void navP3() {
   clearCmd();
   printwd("PARTIE 3 :\n");
-  printwd("Cette partie se basera sur le fichier exemple_meteo.txt.\n");
-  char *choices[5]={"1->Exercice 1","2->Exercice 2","3->Exercice 3","4->Revenir en arrière","0->Quitter le programme"};
+  printwd("L'exercice 1 se basera sur le fichier meteo.txt et les exercices 2 et 3 sur exemple_valide_step3.\n");
+  char *choices[5]={"1->Exercice 1","2->Exercice 2","3->Exercice 3 (Bonus)","4->Revenir en arrière","0->Quitter le programme"};
   createInput(5,choices);
   int inp=0;
   scanf(" %d",&inp);

@@ -42,8 +42,7 @@ void matrix0(float ** matrix, int n);
 void printMatrix(float ** matrix, int n);
 
 
-/* Affiche la distribution stationnaire lue dans la matrice
- * (selon le format choisi dans l’implémentation).
+/* Affiche la distribution stationnaire lue dans la matrice.
  *
  * Paramètres :
  *  - matrix : matrice contenant la distribution.
@@ -106,7 +105,7 @@ float diffMatrix(float **M, float **N, int n);
 float **powerMatrix(float **matrix, int n, int p);
 
 
-/* Recherche la matrice stable obtenue en multipliant A par elle-même
+/* Recherche la matrice de la distribution stationnaire obtenue en multipliant A par elle-même
  * jusqu'à convergence, selon une marge epsilon.
  *
  * Paramètres :
@@ -115,12 +114,12 @@ float **powerMatrix(float **matrix, int n, int p);
  *  - epsilon : seuil pour la convergence.
  *
  * Retour :
- *  - La matrice stable obtenue.
+ *  - La matrice de la distribution stationnaire.
  */
 float **stableMatrix(float **A, int n, float epsilon);
 
 
-/* Calcule la matrice stable pour chaque classe du graphe et affiche les résultats.
+/* Calcule la matrice de la distribution stationnaire pour chaque classe du graphe et affiche les résultats.
  *
  * Paramètres :
  *  - t    : graphe d'adjacence initial.
@@ -132,6 +131,12 @@ float **stableMatrix(float **A, int n, float epsilon);
 void allStableMatrix(t_adj t, t_stock_class part);
 
 void periodicity(t_adj graph);
+/**
+ * @brief calcule les puissances successives de la matrice d'adjacence et, pour chaque puissance k, vérifie si un élément diagonal est non nul, ce qui indique l'existence d'un cycle de longueur k. Elle collecte toutes ces longueurs puis retourne leur PGCD, qui correspond à la période de la classe.
+ * @param sub_matrix sous-matrice de la classe
+ * @param n taille de la sous-matrice
+ * @return La période (1 si apériodique, >1 si périodique), 0 si erreur.
+ */
 int getPeriod(float **sub_matrix,int n);
 int gcd(int *vals, int nbvals);
 

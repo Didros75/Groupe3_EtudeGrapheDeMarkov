@@ -169,7 +169,7 @@ void allStableMatrix(t_adj t, t_stock_class part) {
     float **C = stableMatrix(S, n, 0.01);
 
     printf("Matrice de la distribution stationnaire de la classe C%d\n", i + 1);
-    printMatrix(C, n);
+    printDistribution(C, n);
     printf("\n");
 
     freeMatrix(S, n);
@@ -195,12 +195,7 @@ int gcd(int *vals, int nbvals) {
     return result;
 }
 
-/**
- * @brief calcule les puissances successives de la matrice d'adjacence et, pour chaque puissance k, vérifie si un élément diagonal est non nul, ce qui indique l'existence d'un cycle de longueur k. Elle collecte toutes ces longueurs puis retourne leur PGCD, qui correspond à la période de la classe.
- * @param A sous-matrice de la classe
- * @param n taille de la sous-matrice
- * @return La période (1 si apériodique, >1 si périodique), 0 si erreur.
- */
+
 int getPeriod(float **A, int n) {
     if (n == 0 || A == NULL) return 0;
 
@@ -251,7 +246,7 @@ void periodicity(t_adj graph) {
     for (int i = 0; i < partition.nb_t_class; i++) {
       t_class cls = partition.tab_t_class[i];
 
-      printf("\nAnalyse de la Class %s (Colonnes : ", partition.tab_t_class[i].name);
+      printf("\nAnalyse de la Class %s (Sommets : ", partition.tab_t_class[i].name);
         for (int v = 0; v < cls.nb_summit; v++) {
             printf("%d ", cls.tab_summit[v].id);
         }
