@@ -28,7 +28,6 @@ bool link_exists(t_link_array *link_array, char *from, char *to) {
 void hasse(char **array_class, t_adj adj, t_link_array *link_array) {
     link_array->log_size = 0;
     for (int summit = 0; summit < adj.lenght; summit++) {
-        //printf("Summit value is : %d\n", summit+1);
 
         char *Ci = array_class[summit];
         t_cell *current = adj.leaving_edge[summit].head;
@@ -38,7 +37,6 @@ void hasse(char **array_class, t_adj adj, t_link_array *link_array) {
             int arrival = current->summit_arrival;
             char *Cj = array_class[arrival-1];
 
-            //printf("%d - %s\n",current->summit_arrival,Cj);
             if (strcmp(Ci, Cj) != 0) {
 
                 if (!link_exists(link_array, Ci, Cj)) {
@@ -51,9 +49,9 @@ void hasse(char **array_class, t_adj adj, t_link_array *link_array) {
                 }
             }
             current = current->next;
-        }//printf("Next !\n");
+        }
 
-    }//printf("Final Point --------------\n");
+    }
     removeTransitiveLinks(link_array);
 }
 

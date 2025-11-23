@@ -36,7 +36,6 @@ int create_file(const char *filename);
 void add_text_on_file(const char *filename, const char *text);
 
 
-
 /* Ajoute "" dans le fichier.
  *
  * Paramètres :
