@@ -6,15 +6,17 @@
 #include "list_adj.h"
 
 int create_file(const char *filename) {
-  FILE *file = fopen(filename, "w");
-  if (file == NULL) {
-    perror("Erreur lors de la création du fichier");
-    return 0;
-  }
-  fclose(file);
-  return 1;
-}
+    char filepath[256];
+    snprintf(filepath, sizeof(filepath), "Exports/%s", filename);
 
+    FILE *file = fopen(filepath, "w");
+    if (file == NULL) {
+        perror("Erreur lors de la création du fichier");
+        return 0;
+    }
+    fclose(file);
+    return 1;
+}
 void add_text_on_file(const char *filename, const char *text) {
   FILE *file = fopen(filename, "a");
   if (file == NULL) {
@@ -49,7 +51,7 @@ void parcours_adj(t_adj adj,char *file_name) {
       char final_string[LINK_SIZE];
       char rival[sizeof(arrival)];
       strcpy(rival,arrival);
-      snprintf(final_string, sizeof(final_string), "%s-->|%.2f|%s",getID(i+1), proba,rival);
+      snprintf(final_string, sizeof(final_string), "%s -->|%.2f|%s",getID(i+1), proba,rival);
       printf("%s\n", final_string);
       add_text_on_file(file_name, final_string);
       cell = cell->next;

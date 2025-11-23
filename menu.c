@@ -230,7 +230,7 @@ void exo3() {
   }else if (inp==2) {
     char *path=userChoice("exemple2.txt");
     export_adj(readGraph(path),"exemple2_export.txt");
-    printwd("Vous trouverez votre export dans le CMake\n");
+    printwd("Vous trouverez votre export dans le dossier Exports\n");
     free(path);
     exo3();
   }else if (inp==3) {

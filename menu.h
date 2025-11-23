@@ -6,7 +6,7 @@
 #define WELCOME_MSG_3 "Ce projet vous est presente par -> Julie Sieux / Arthur Morinaux / Melvin Chaigneaux / Elliot Langermman !\n"
 #define BASIC_NAV_MSG "Vous etes dans le menu de navigation, il vous permettra de naviguer parmis chaque etape du projet.\nVous pouvez selectionner la partie du projet que vous souhaitez consulter :\n"
 
-#define PROFIL_CHAIG "C:/Users/chaig/CLionProjects/Groupe3_EtudeGrapheDeMarkov/data/"
+#define PROFIL_CHAIG "data/"
 #define PROFIL_JULIE "C:/Users/julie/CLionProjects/Groupe3_EtudeGrapheDeMarkov/data/"
 #define PROFIL_MORIN "C:/Users/morin/CLionProjects/Groupe3_EtudeGrapheDeMarkov/data/"
 #define PROFIL_BOBAN "C:/Users/boban/CLionProjects/Groupe3_EtudeGrapheDeMarkov_prj/data/"

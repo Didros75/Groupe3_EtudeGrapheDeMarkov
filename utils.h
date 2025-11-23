@@ -2,7 +2,7 @@
 #define __UTILS_H__
 
 #include "hasse.h"
-
+#include "hasse.h"
 /* Retourne l'identifiant correspondant au sommet i dans l'alphabet.
  *
  * Paramètres :

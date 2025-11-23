@@ -3,7 +3,7 @@
 #include "list_adj.h"
 #include "hasse.h"
 
-#define DEFAULT_MERMAID_HEADER "---\nconfig:\n\tlayout: elk\n\ttheme: neo\n\tlook: neo\n---"
+#define DEFAULT_MERMAID_HEADER "---\nconfig:\nlayout: elk\ntheme: neo\nlook: neo\n---"
 #define FLOWCHART "flowchart LR"
 #define DEFAULT_FILE_NAME "default.txt"
 #define A_INIT_SIZE 7
