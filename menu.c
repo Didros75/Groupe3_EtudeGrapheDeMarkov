@@ -236,7 +236,7 @@ void exo3() {
   }else if (inp==3) {
     char *path=userChoice("exemple3.txt");
     export_adj(readGraph(path),"exemple3_export.txt");
-    printwd("Vous trouverez votre export dans le CMake\n");
+    printwd("Vous trouverez votre export dans le dossier Exports\n");
     free(path);
     exo3();
   }else if (inp==4) {
@@ -333,7 +333,7 @@ void exo5() {
     }
     char * file="hasse_export.txt";
     void export_hasse(links, file);
-    printwd("Un export du hasse pour mermaid a ete fait, il se trouve dans le CMake\n");
+    printwd("Un export du hasse pour mermaid a ete fait, il se trouve dans le dossier des exports\n");
     exo5();
   }else if (inp==2) {
     char * path=userChoice("exemple2.txt");
@@ -353,7 +353,7 @@ void exo5() {
     }
     char * file="hasse_export.txt";
     void export_hasse(links, file);
-    printwd("Un export du hasse pour mermaid a ete fait, il se trouve dans le CMake\n");
+    printwd("Un export du hasse pour mermaid a ete fait, il se trouve dans le dossier des exports\n");
     exo5();
   }else if (inp==3) {
     char * path=userChoice("exemple3.txt");
@@ -374,7 +374,7 @@ void exo5() {
     loading("Chargement",1);
     char * file="hasse_export.txt";
     void export_hasse(links, file);
-    printwd("Un export du hasse pour mermaid a ete fait, il se trouve dans le CMake\n");
+    printwd("Un export du hasse pour mermaid a ete fait, il se trouve dans le dossier des Exports\n");
     exo5();
   }else if (inp==4) {
     printwd("Retour...\n");
