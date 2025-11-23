@@ -16,6 +16,7 @@ set(SOURCES
         tarjan.c
         hasse.c
         matrix.c
+        menu.c
 )
 
 # Créer l'exécutable
