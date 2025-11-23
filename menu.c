@@ -124,7 +124,7 @@ void nav() {
 
 char * userChoice(char * exercice) {
   printwd("Qui est l'utilisateur ? : ");
-  char *choices[5]={"1->Melvin","2->Julie","3->Arthur","4->Elliot","5->Autre..."};
+  char *choices[5]={"1->Professeur","2->Julie","3->Arthur","4->Elliot","5->Autre..."};
   createInput(5,choices);
   int inp=0;
   scanf(" %d",&inp);
@@ -224,7 +224,7 @@ void exo3() {
   if (inp==1) {
     char * path=userChoice("exemple1.txt");
     export_adj(readGraph(path),"exemple1_export.txt");
-    printwd("Vous trouverez votre export dans le CMake\n");
+    printwd("Vous trouverez votre export dans le dossier Exports\n");
     free(path);
     exo3();
   }else if (inp==2) {
